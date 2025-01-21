@@ -4,32 +4,30 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 
-
-
 class Safe {
-	private String pin_code;
-	private ArrayList<String> safe_folder;
+	private String pinCode;
+	private ArrayList<String> safeFolder;
 
 	public Safe(String pinCode_) {
-		pin_code = pinCode_;
-		safe_folder = new ArrayList<String>();
+		pinCode = pinCode_;
+		safeFolder = new ArrayList<String>();
 	}
 
 	boolean check_pin(String pin_) {
-		return pin_.equals(pin_code);
+		return pin_.equals(pinCode);
 	}
 
 	void change_pin(String new_pin) {
-		pin_code = new_pin;
+		pinCode = new_pin;
 	}
 
 	void add(String value) {
-		safe_folder.add(value);
+		safeFolder.add(value);
 	}
 
 	ArrayList<String> get(String pin) {
-		if (pin.equals(pin_code)) {
-			return safe_folder;
+		if (pin.equals(pinCode)) {
+			return safeFolder;
 		} else {
 			return null;
 		}
