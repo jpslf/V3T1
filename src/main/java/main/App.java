@@ -56,21 +56,21 @@ class Impl {
 	}
 
 	String ask(String promt) {
-		System.out.print(promt);
+		System.out.println(promt);
 
 		return in.next().strip();
 	}
 
 	void AsetaPinkoodi() {
-		safe.change_pin(ask("Anna uusi PIN-koodi: "));
+		safe.change_pin(ask("Anna uusi PIN-koodi:"));
 	}
 
 	void LisaaTietojaKansioon() {
-		safe.add(ask("Anna kansioon lisättävä tieto: \n"));
+		safe.add(ask("Anna kansioon lisättävä tieto:"));
 	}
 
 	void ListaaTiedotKansiosta() {
-		var values = safe.get(ask("Anna PIN-koodi: "));
+		var values = safe.get(ask("Anna PIN-koodi:"));
 
 		if (values == null) {
 			System.out.println("Väärä PIN-koodi!");
