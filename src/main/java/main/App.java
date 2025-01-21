@@ -1,6 +1,40 @@
 package main;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+
+
+
+
+class Safe {
+	private String pin_code;
+	private ArrayList<String> safe_folder;
+
+	public Safe(String pinCode_) {
+		pin_code = pinCode_;
+		safe_folder = new ArrayList<String>();
+	}
+
+	boolean check_pin(String pin_) {
+		return pin_.equals(pin_code);
+	}
+
+	void change_pin(String new_pin) {
+		pin_code = new_pin;
+	}
+
+	void add(String value) {
+		safe_folder.add(value);
+	}
+
+	ArrayList<String> get(String pin) {
+		if (pin.equals(pin_code)) {
+			return safe_folder;
+		} else {
+			return null;
+		}
+	}
+}
 
 /**
 * Actual implementation
@@ -8,8 +42,11 @@ import java.util.Scanner;
 class Impl {
 	Scanner in;
 
+	Safe safe;
+
 	Impl(String[] args) {
 		in = new Scanner(System.in);
+		safe = new Safe("0000");
 	}
 
 	void close() {
@@ -18,18 +55,27 @@ class Impl {
 		System.out.println("Kiitos ohjelman käytöstä.");
 	}
 
+	String ask(String promt) {
+		System.out.print(promt);
+
+		return in.next().strip();
+	}
+
 	void AsetaPinkoodi() {
-		System.out.println("Aseta PIN-koodi");
+		if (safe.check_pin(ask("Anna vanha PIN-koodi: "))) {
+			safe.change_pin(ask("Anna uusi PIN-koodi: "));
+		}
 	}
 
 	void LisaaTietojaKansioon() {
-		System.out.println("Lisää tietoja kansioon");
+		safe.add(ask("Anna kansioon lisättävä tieto: \n"));
 	}
 
 	void ListaaTiedotKansiosta() {
-		System.out.println("Listaa tiedot kansiosta");
+		for (String value: safe.get(ask("Anna PIN-koodi: "))) {
+			System.out.println(value);
+		}
 	}
-
 
 	boolean run() {
 		System.out.println("1) Aseta PIN-koodi");
