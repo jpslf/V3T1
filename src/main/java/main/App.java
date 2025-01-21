@@ -62,9 +62,7 @@ class Impl {
 	}
 
 	void AsetaPinkoodi() {
-		if (safe.check_pin(ask("Anna vanha PIN-koodi: "))) {
-			safe.change_pin(ask("Anna uusi PIN-koodi: "));
-		}
+		safe.change_pin(ask("Anna uusi PIN-koodi: "));
 	}
 
 	void LisaaTietojaKansioon() {
@@ -72,8 +70,14 @@ class Impl {
 	}
 
 	void ListaaTiedotKansiosta() {
-		for (String value: safe.get(ask("Anna PIN-koodi: "))) {
-			System.out.println(value);
+		var values = safe.get(ask("Anna PIN-koodi: "));
+
+		if (values == null) {
+			System.out.println("Väärä PIN-koodi!");
+		} else {
+			for (String value: values) {
+				System.out.println(value);
+			}
 		}
 	}
 
